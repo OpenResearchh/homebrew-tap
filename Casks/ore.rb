@@ -16,8 +16,8 @@
 # is precisely why ORE lives in its own tap for now. Once ORE is notarized
 # this block goes away and the cask can be submitted upstream.
 cask "ore" do
-  version "0.8.0"
-  sha256 "2457506ce52621f9a79e87cbcb4ff9f172ef4940fd24f304025e38d3268cfe87"
+  version "0.8.1"
+  sha256 "506452dd98760deb1cd96e53aa57907c838375ecd6edd3af7a30a55749cedbd1"
 
   url "https://github.com/OpenResearchh/ore/releases/download/v#{version}/ORE-#{version}.zip",
       verified: "github.com/OpenResearchh/ore/"
@@ -50,6 +50,18 @@ cask "ore" do
     FileUtils.mkdir_p(ore_home)
     File.write(File.join(ore_home, "install-channel"), "homebrew")
   end
+
+  # Homebrew prints this after `brew install`, and it is the only place this
+  # channel can say anything to the user. Analytics default to on, and until
+  # now install.sh was the only route that disclosed them — a user who came
+  # via `brew install` was never told at all.
+  caveats <<~EOS
+    ORE reports a few anonymous usage events, and never your code or prompts.
+
+    Turn it off in Settings -> Privacy, or set ORE_TELEMETRY=0 in the
+    environment. Exactly what is reported:
+      https://github.com/OpenResearchh/ore/blob/master/PRIVACY.md
+  EOS
 
   uninstall quit: "dev.ore.OreMac"
 
