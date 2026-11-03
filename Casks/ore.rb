@@ -16,8 +16,8 @@
 # is precisely why ORE lives in its own tap for now. Once ORE is notarized
 # this block goes away and the cask can be submitted upstream.
 cask "ore" do
-  version "0.9.5"
-  sha256 "0d3dd330b67bd2b78ace8c1a79fb838d4f22a143e70c57400a11a656de0ebcbf"
+  version "0.9.6"
+  sha256 "aaaea7870241fb8fac6c7bff7a4ac77e8a481100691e47e51ecd1aba8cd40147"
 
   url "https://github.com/OpenResearchh/ore/releases/download/v#{version}/ORE-#{version}.zip",
       verified: "github.com/OpenResearchh/ore/"
